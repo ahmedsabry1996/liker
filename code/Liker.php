@@ -97,8 +97,6 @@ class Liker {
         
     }
     
-    
-    
 }
 
 if(isset($_GET['action'],$_GET['post'])){
