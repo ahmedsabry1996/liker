@@ -56,7 +56,7 @@ class Liker {
             
             if($delete_liked && $delete_disliked){
                 
-                echo "back like";
+                 echo "back like";
             
             }
         }
