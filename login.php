@@ -1,16 +1,16 @@
 <?php
 ob_start();
-require_once 'code/Liker.php';
-$liker = new Liker();
+session_start();
+$user_name = $_POST['username'];
 
-if(!isset($_SESSION['user_id'])){
+if(!empty($user_name)){
     
-    header("location:http://localhost/oop_apps/Liker/login.php");
-    die();
+    $_SESSION['user_id']=  $user_name;
+    header("location:http://localhost/oop_apps/Liker");
 }
 
- $_SESSION['user_id'];
 ?>
+
 <!DOCTYPE html>
 <html lang="">
 	<head>
@@ -21,24 +21,22 @@ if(!isset($_SESSION['user_id'])){
 
 		<!-- Bootstrap CSS -->
     <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+
 	</head>
 	<body>
-		<h1 class="text-center"></h1>
-        <div class="container">
+<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" role="form">
 
-        <div class="row text-center" >
-           <div class="col-sm-4" id="posts">
-            <?php  $liker->fetchPosts(); ?>
-<br>
-    <a href="logout.php?u=<?php echo $_SESSION['user_id'];?>" class="btn btn-warning">logout</a>
+	<div class="form-group">
+		<label for="">username</label>
+		<input type="text" class="form-control" name="username" placeholder="Input field">
+	</div>
 
-        </div></div>
 
-    
-    </div>
-    
+
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="js/ajax.js"></script>
 	</body>
 </html>
