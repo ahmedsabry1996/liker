@@ -6,7 +6,7 @@ $user_name = $_POST['username'];
 if(!empty($user_name)){
     
     $_SESSION['user_id']=  $user_name;
-    header("location:http://localhost/oop_apps/Liker");
+    header("location:http://localhost/oop_apps/liker");
 }
 
 ?>

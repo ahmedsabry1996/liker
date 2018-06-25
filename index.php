@@ -4,8 +4,8 @@ require_once 'code/Liker.php';
 $liker = new Liker();
 
 if(!isset($_SESSION['user_id'])){
-    
-    header("location:http://localhost/oop_apps/Liker/login.php");
+     
+    header("location:http://localhost/oop_apps/liker/login.php");
     die();
 }
 
@@ -21,6 +21,7 @@ if(!isset($_SESSION['user_id'])){
 
 		<!-- Bootstrap CSS -->
     <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	</head>
 	<body>
 		<h1 class="text-center"></h1>
@@ -37,8 +38,7 @@ if(!isset($_SESSION['user_id'])){
     
     </div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/ajax.js"></script>
 	</body>
 </html>

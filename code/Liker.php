@@ -25,13 +25,14 @@ class Liker {
     <h1 class="text-center">
         <?=$data->title?>
     </h1>
-    <a href="#" action="like" post="<?=$data->id?>" class="btn btn-info like ">
-    like <code>
+    <a href="#" action="like" post="<?=$data->id?>" class="btn btn-default like ">
+    <i class="fas fa-heart"></i> <code>
 <?php echo $this->posts_info ['likes']= $this->fans("likes",$data->id);?>
       </code>
    
    </a>
-    <a href="#" action="dislike" post="<?=$data->id?>" class="btn btn-danger dislike">dislike 
+    <a href="#" action="dislike" post="<?=$data->id?>" class="btn btn-default dislike"> 
+    <i class="fas fa-angry"></i>  
     <code>
 <?php echo $this->posts_info ['dislikes'] = $this->fans("dislikes",$data->id);?>
   </code>

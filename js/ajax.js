@@ -14,7 +14,7 @@ $("a.btn").click(function(){
       });
         }
     console.log(numOfFans,action);
-    let url = `http://localhost/oop_apps/Liker/code/Liker.php?action=${action}&post=${post}`;
+    let url = `http://localhost/oop_apps/liker/code/Liker.php?action=${action}&post=${post}`;
 
     $.ajax({
         url:url,
