@@ -22,7 +22,7 @@ $("a.btn").click(function(){
         success:function(data){
         console.log(data);
 
-        },
+        }, 
         fail:function(err){
             console.log(err)
         }

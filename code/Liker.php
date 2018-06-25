@@ -21,7 +21,7 @@ class Liker {
         $this->posts = $this->pdo->query("select * from posts");
         $this->posts_info = array();
         while($data = $this->posts->fetchObject()):
-        ?>
+        ?> 
     <h1 class="text-center">
         <?=$data->title?>
     </h1>
