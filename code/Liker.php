@@ -22,54 +22,85 @@ class Liker {
         $this->posts = $this->pdo->query("select * from posts");
         $this->posts_info = array();
         ?>
-        <div class="row">
-        
-        <div class="col-sm-6">
+        <div class="row text-center" id="posts">
         <?php
         while($data = $this->posts->fetchObject()):
         ?> 
-            <div class="row">
-    <h1 class="text-center">
-        <?=$data->title?>
-    </h1>
-            </div>    
-    <div class="col-sm-3">
-    <div class="col-sm-1">
-    <a href="#" action="like" post="<?=$data->id?>" class="btn btn-default like ">
+        <div class="col-sm-12 text-center">
+        <h1 class="text-center"><?=$data->title?></h1>
+    <!--like-->
+    
+    <a href="#" action="like" post="<?=$data->id?>" class="btn btn-default like text-center action">
     <i class="fas fa-heart"></i> <code>
     <?php echo $this->posts_info ['likes']= $this->fans("likes",$data->id);?>
       </code>
    </a>
+        <a href="#" class="btn btn-success btn-md"  data-toggle="modal" data-target="#myModal-like-<?php echo $data->id;?>">likers</a> 
+         
+         <div id="myModal-like-<?php echo $data->id;?>" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Likers</h4>
+      </div>
+      <div class="modal-body">
+      <div class="liker"><?php $this->fan_name("likes","liker",$data->id);?></div>
+          
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
-    <div class="row">
-    <div class="col-sm-3">
-          <?php $this->fan_name("likes","liker",$data->id);?>
+
+  </div>
 </div>
-       </div>
-</div>
-        
-<div class="col-sm-3">        
-<div class="col-sm-1">
-   <a href="#" action="dislike" post="<?=$data->id?>" class="btn btn-default dislike"> 
+         
+         
+          <br>
+          <br>
+   <!--dislike-->
+   <a href="#" action="dislike" post="<?=$data->id?>" class="btn btn-default dislike action"> 
     <i class="fas fa-angry"></i>  
     <code>
 <?php echo $this->posts_info ['dislikes'] = $this->fans("dislikes",$data->id);?>
   </code>
    
     </a>
+      
+        <a   data-toggle="modal" data-target="#myModal-dislikes-<?php echo $data->id;?>" href="#" class="btn btn-success btn-sm">dislikers</a>
+        <div id="myModal-dislikes-<?php echo $data->id;?>" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">dislikers</h4>
+      </div>
+      <div class="modal-body">
+         <?php $this->fan_name("dislikes","disliker",$data->id);?>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
-      <div class="row">
-      <div class="col-sm-3">
-       <?php $this->fan_name("dislikes","disliker",$data->id);?>
-</div>
-         </div>
-          </div>
-        <hr>
-              <?php
+        
+              
+     <?php
+    ?>
+               </div>
+
+       <?php
         endwhile;
     ?>
     </div>
-</div>
     <?php
         
     }
@@ -159,7 +190,6 @@ class Liker {
         
        ?>
        <ul>
-       <h5><b><?php echo $join."s"?></b></h5>
        <?php
         while($data = $this->fans_name->fetchObject()){
          ?><li><?php echo $data->username?></li>

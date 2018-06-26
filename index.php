@@ -24,13 +24,13 @@ if(!isset($_SESSION['user_id'])){
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	</head>
 	<body>
-		<h1 class="text-center"></h1>
         <div class="container">
 
             <?php  $liker->fetchPosts(); ?>
-<br>
-    <a href="logout.php?u=<?php echo $_SESSION['user_id'];?>" class="btn btn-warning">logout</a>
 
+    <div class="row">
+            <a href="logout.php?u=<?php echo $_SESSION['user_id'];?>" class="btn btn-warning">logout</a>
+</div>
     
 
     

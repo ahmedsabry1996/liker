@@ -1,18 +1,12 @@
 $(function(){
 
-$("a.btn").click(function(){
+$("a.action").click(function(){
    
     let post = $(this).attr("post");
     let action = $(this).attr("action");
     
     let numOfFans =$(this).children("code").text();
-       
-            setTimeout(reload,1000);
-        function reload(){
-           $('#posts').load('#posts', function() {
-        console.log('done');
-      });
-        }
+    
     console.log(numOfFans,action);
     let url = `http://localhost/oop_apps/liker/code/Liker.php?action=${action}&post=${post}`;
 
