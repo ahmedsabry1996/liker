@@ -27,13 +27,11 @@ if(!isset($_SESSION['user_id'])){
 		<h1 class="text-center"></h1>
         <div class="container">
 
-        <div class="row text-center" >
-           <div class="col-sm-4" id="posts">
             <?php  $liker->fetchPosts(); ?>
 <br>
     <a href="logout.php?u=<?php echo $_SESSION['user_id'];?>" class="btn btn-warning">logout</a>
 
-        </div></div>
+    
 
     
     </div>

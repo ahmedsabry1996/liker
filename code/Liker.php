@@ -7,7 +7,8 @@ class Liker {
     private $pdo ;
     public $posts,
             $posts_info,
-           $num_of_fans;      
+            $num_of_fans,
+            $fans_name    ;      
         
     
     public function __construct(){
@@ -20,28 +21,61 @@ class Liker {
         
         $this->posts = $this->pdo->query("select * from posts");
         $this->posts_info = array();
+        ?>
+        <div class="row">
+        
+        <div class="col-sm-6">
+        <?php
         while($data = $this->posts->fetchObject()):
         ?> 
+            <div class="row">
     <h1 class="text-center">
         <?=$data->title?>
     </h1>
+            </div>    
+    <div class="col-sm-3">
+    <div class="col-sm-1">
     <a href="#" action="like" post="<?=$data->id?>" class="btn btn-default like ">
     <i class="fas fa-heart"></i> <code>
-<?php echo $this->posts_info ['likes']= $this->fans("likes",$data->id);?>
+    <?php echo $this->posts_info ['likes']= $this->fans("likes",$data->id);?>
       </code>
-   
    </a>
-    <a href="#" action="dislike" post="<?=$data->id?>" class="btn btn-default dislike"> 
+    </div>
+    <div class="row">
+    <div class="col-sm-3">
+          <?php $this->fan_name("likes","liker",$data->id);?>
+</div>
+       </div>
+</div>
+        
+<div class="col-sm-3">        
+<div class="col-sm-1">
+   <a href="#" action="dislike" post="<?=$data->id?>" class="btn btn-default dislike"> 
     <i class="fas fa-angry"></i>  
     <code>
 <?php echo $this->posts_info ['dislikes'] = $this->fans("dislikes",$data->id);?>
   </code>
-  
+   
     </a>
-    <?php
+</div>
+      <div class="row">
+      <div class="col-sm-3">
+       <?php $this->fan_name("dislikes","disliker",$data->id);?>
+</div>
+         </div>
+          </div>
+        <hr>
+              <?php
         endwhile;
-        }
+    ?>
+    </div>
+</div>
+    <?php
+        
+    }
     
+
+
     public function like($post_id,$user_id){
         
         $check_liked = $this->pdo->query("select * from likes where post_id = '{$post_id}' and liker = '{$user_id}'");
@@ -116,11 +150,33 @@ class Liker {
         
       echo  $this->num_of_fans= $all_reactions->rowCount();
     }
+
+
+    public function fan_name($table,$join,$post_id){
+        
+         $fan_id = $table. '.' .$join;
+        $this->fans_name = $this->pdo->query("SELECT $fan_id,users.username from $table LEFT JOIN users ON $fan_id = users.id where post_id = $post_id");
+        
+       ?>
+       <ul>
+       <h5><b><?php echo $join."s"?></b></h5>
+       <?php
+        while($data = $this->fans_name->fetchObject()){
+         ?><li><?php echo $data->username?></li>
+        <?php
+        }
+    ?>
+    </ul>
+    <?php
+    
+        
+    }
+
 }
 
+    $liker = new Liker();
 if(isset($_GET['action'],$_GET['post'])){
     
-    $liker = new Liker();
     
     $post_id = $_GET['post'];
     $user_id = $_SESSION['user_id'];
